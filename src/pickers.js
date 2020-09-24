@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
+import { Picker } from '@react-native-community/picker';
 
 export class Pickers extends React.Component {
 
@@ -27,7 +28,7 @@ export class Pickers extends React.Component {
     return (
       <React.Fragment>
         <View style={styles.section}>
-          <Text>useNativeAndroidPickerStyle=true, no style</Text>
+          <Text>1 useNativeAndroidPickerStyle=true, no style</Text>
           <RNPickerSelect
             value={this.state.picker1}
             onValueChange={value => {
@@ -36,11 +37,12 @@ export class Pickers extends React.Component {
             }}
             items={this.items}
             useNativeAndroidPickerStyle={true}
+            textInputProps={styles.picker}
           />
         </View>
 
         <View style={styles.section}>
-          <Text>useNativeAndroidPickerStyle=false, no style</Text>
+          <Text>2 useNativeAndroidPickerStyle=false, no style</Text>
           <RNPickerSelect
             value={this.state.picker2}
             onValueChange={value => {
@@ -49,11 +51,12 @@ export class Pickers extends React.Component {
             }}
             items={this.items}
             useNativeAndroidPickerStyle={false}
+            textInputProps={styles.picker}
           />
         </View>
 
         <View style={styles.section}>
-          <Text>useNativeAndroidPickerStyle=true, with style</Text>
+          <Text>3 useNativeAndroidPickerStyle=true, with style</Text>
           <RNPickerSelect
             value={this.state.picker3}
             onValueChange={value => {
@@ -62,12 +65,13 @@ export class Pickers extends React.Component {
             }}
             items={this.items}
             useNativeAndroidPickerStyle={true}
+            style={ {inputAndroid: styles.androidPicker }}
             textInputProps={styles.picker}
           />
         </View>
 
         <View style={styles.section}>
-          <Text>useNativeAndroidPickerStyle=false, with style</Text>
+          <Text>4 useNativeAndroidPickerStyle=false, with style</Text>
           <RNPickerSelect
             value={this.state.picker4}
             onValueChange={value => {
@@ -76,9 +80,27 @@ export class Pickers extends React.Component {
             }}
             items={this.items}
             useNativeAndroidPickerStyle={false}
+            style={ {inputAndroid: styles.androidPicker }}
             textInputProps={styles.picker}
           />
         </View>
+
+        <View style={styles.section}>
+          <Text>5 react-native-community picker</Text>
+          <Picker
+            selectedValue={this.state.picker5}
+            style={styles.picker2}
+            onValueChange={(itemValue, itemIndex) => {
+              console.log("Picker on value changed ", itemValue, itemIndex);
+              this.setState({picker5: itemValue})
+            }}
+            prompt="Select an item...">
+              {
+                this.items.map( item => <Picker.Item key={`select-${item.value}`} label={item.label} value={item.value} />)
+              }
+          </Picker>
+        </View>
+
       </React.Fragment>
     );
   }
@@ -94,5 +116,14 @@ const styles = StyleSheet.create({
   picker: {
     fontSize: 16,
     color: 'darkblue',
+  },
+  androidPicker: {
+    color: 'darkred',
+  },
+  picker2: {
+    borderWidth: 1,
+    borderColor: 'red',
+    height: 50, 
+    width: '100%'
   }
 })
