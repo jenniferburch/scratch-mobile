@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { SafeAreaView, View, Text, StatusBar, StyleSheet } from 'react-native';
-
+import { ScrollTest } from './ScrollTest';
 
 const App: () => React$Node = () => {
   return (
@@ -18,9 +18,7 @@ const App: () => React$Node = () => {
         <View style={styles.header}>
           <Text style={styles.headerText}> Hello React </Text>
         </View>
-        <View>
-          <Text>text 2</Text> 
-        </View>
+        <ScrollTest />
       </SafeAreaView>
     </>
   );
