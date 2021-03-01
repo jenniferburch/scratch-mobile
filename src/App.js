@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { SafeAreaView, View, Text, StatusBar, StyleSheet } from 'react-native';
-
+import { CalTest } from './CalTest';
 
 const App: () => React$Node = () => {
   return (
@@ -21,6 +21,7 @@ const App: () => React$Node = () => {
         <View>
           <Text>text 2</Text> 
         </View>
+        <CalTest />
       </SafeAreaView>
     </>
   );
